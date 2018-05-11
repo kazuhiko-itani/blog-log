@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  let(:user) {FactoryGirl.build(:user) }
+
   # 有効なファクトリを持つこと
   it 'has a valid factory' do
-    expect(FactoryGirl.build(:user)).to be_valid
+    expect(user).to be_valid
   end
 
   #バリデーションテスト
