@@ -43,6 +43,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'rspec-html-matchers'
 end
 
 group :development do
@@ -53,6 +54,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+end
+
+group :test do
+  gem 'launchy',  '~> 2.4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

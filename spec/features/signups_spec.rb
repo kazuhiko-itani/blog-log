@@ -14,7 +14,7 @@ RSpec.feature "Signups", type: :feature do
       click_button '登録'
     }.to_not change(User, :count)
 
-    expect(page).to have_content '間違いがあります'
+    expect(page).to have_tag('#error_explanation')
   end
 
   # ユーザー登録成功
@@ -31,7 +31,7 @@ RSpec.feature "Signups", type: :feature do
       click_button '登録'
     }.to change(User, :count).by(1)
 
-    expect(page).to have_content 'ユーザー登録が完了しました'
-    expect(page).to have_content user.name
+    expect(page).to have_tag('.alert-success')
+    expect(page).to have_content 'ログアウト'
   end
 end
