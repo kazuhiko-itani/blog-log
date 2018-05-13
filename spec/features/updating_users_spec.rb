@@ -7,13 +7,17 @@ RSpec.feature "UpdatingUsers", type: :feature do
   scenario 'updating user data' do
     visit login_path
 
-    fill_in 'ユーザー名', with: user.name
+    fill_in 'メールアドレス', with: user.email
+    fill_in 'パスワード', with: user.password
     click_button 'ログイン'
 
     visit edit_user_path(user)
 
     # 編集に失敗する
     fill_in 'ユーザー名', with: ' '
+    fill_in 'メールアドレス', with: ' '
+    fill_in 'パスワード（5文字以上）', with: ' '
+    fill_in 'パスワード（確認）', with: ' '
     click_button '変更'
 
     expect(user.reload.name).to eq user.name
@@ -21,6 +25,9 @@ RSpec.feature "UpdatingUsers", type: :feature do
 
     # 編集に成功する（パスワードは空でも可）
     fill_in 'ユーザー名', with: 'success'
+    fill_in 'メールアドレス', with: 'test@gmail.com'
+    fill_in 'パスワード（5文字以上）', with: ''
+    fill_in 'パスワード（確認）', with: ''
     click_button '変更'
 
     expect(user.reload.name).to eq 'success'
