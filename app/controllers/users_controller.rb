@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # 一時的に不要
   def create
     @user = User.new(user_params)
     if @user.save

@@ -9,7 +9,6 @@ RSpec.feature "Layouts", type: :feature do
     expect(page).to have_content 'ログイン'
     expect(page).to have_content '新規登録'
 
-
     log_in_as user
     visit root_path
 
@@ -17,6 +16,7 @@ RSpec.feature "Layouts", type: :feature do
     expect(page).to_not have_content '新規登録'
   end
 
+  # テスト用のログインフォームからログイン
   def log_in_as(user)
     visit login_path
     fill_in 'メールアドレス', with: user.email

@@ -79,7 +79,7 @@ RSpec.describe "Users", type: :request do
   end
 
   def login_as(user)
-    post login_path, params: { session: {
+    post '/test/login', params: { session: {
                   email: user.email,
                   password: user.password
         }
