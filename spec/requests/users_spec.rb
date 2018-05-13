@@ -42,10 +42,7 @@ RSpec.describe "Users", type: :request do
     # 非ログイン状態ではログイン画面にリダイレクトされること
     it 'redirect to login-page without login' do
       patch user_path(user), params: { user: {
-                      name: user.name,
-                      email: user.email,
-                      password: user.password,
-                      password_confirmation: user.password_confirmation
+                      name: user.name
         }
       }
       expect(response).to redirect_to(login_url)
@@ -55,10 +52,7 @@ RSpec.describe "Users", type: :request do
       it 'redirect to top-page when logged in wrong user' do
         login_as(other_user)
         patch user_path(user), params: { user: {
-                      name: other_user.name,
-                      email: other_user.email,
-                      password: other_user.password,
-                      password_confirmation: other_user.password_confirmation
+                      name: other_user.name
           }
         }
         expect(response).to redirect_to(root_url)
@@ -68,10 +62,7 @@ RSpec.describe "Users", type: :request do
     it 'redirect to show-page with login' do
       login_as(user)
       patch user_path(user), params: { user: {
-                      name: user.name,
-                      email: user.email,
-                      password: user.password,
-                      password_confirmation: user.password_confirmation
+                      name: user.name
         }
       }
       expect(response).to redirect_to(user_url(user))
@@ -80,8 +71,7 @@ RSpec.describe "Users", type: :request do
 
   def login_as(user)
     post '/test/login', params: { session: {
-                  email: user.email,
-                  password: user.password
+                  name: user.name
         }
       }
   end

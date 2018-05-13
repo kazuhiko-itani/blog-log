@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
+  # 一時的に不要
   def new
     @user = User.new
   end
@@ -28,8 +29,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    @user = User.find(params[:id]
+    if params[:user][:name] == '名無しさん'
+      flash.now[:danger] = 'ユーザー名を変更してください'
+      render 'edit'
+    elsif @user.update_attributes(user_params)
       flash[:success] = 'ユーザー情報を編集しました'
       redirect_to @user
     else
@@ -40,8 +44,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email,
-                    :password, :password_confirmation)
+      params.require(:user).permit(:name)
     end
 
     def logged_in_user
