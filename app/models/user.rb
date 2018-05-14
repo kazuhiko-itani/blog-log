@@ -1,25 +1,27 @@
 class User < ApplicationRecord
 
-  before_save :downcase_address
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-
+  mount_uploader :image_url, PictureUploader
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 },
-                            format: { with: VALID_EMAIL_REGEX },
-                            uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 5 }
-  has_secure_password
+  validate :image_size
 
-  def User.digest(string)
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = '名無しさん'
+    end
+  end
+
+  def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
-  private
-
-    def downcase_address
-      self.email.downcase!
+  def image_size
+    if image_url.size > 5.megabytes
+      errors.add(:image_url, '画像のサイズが大きすぎます')
     end
+  end
 end

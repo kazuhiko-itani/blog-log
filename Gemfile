@@ -10,6 +10,11 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'bcrypt', '3.1.11'
 gem 'bootstrap-sass', '3.3.7'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'dotenv-rails'
+gem 'carrierwave', '1.2.2'
+gem 'mini_magick', '4.7.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -58,6 +63,9 @@ end
 
 group :test do
   gem 'launchy',  '~> 2.4.3'
+end
+
+group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
