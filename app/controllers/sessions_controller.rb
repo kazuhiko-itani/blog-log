@@ -7,17 +7,17 @@ class SessionsController < ApplicationController
     log_in user
     if user.name == '名無しさん'
       flash[:success] = 'ユーザー登録が完了しました'
-      redirect_to edit_user_path(user)
+      redirect_back_or edit_user_url(user)
     else
       flash[:success] = 'ログインしました'
-      redirect_to user
+      redirect_back_or user
     end
   end
 
   def destroy
     log_out
     flash[:success] = 'ログアウトしました'
-    redirect_to root_path
+    redirect_to root_url
   end
 
   # テスト用のログインアクション
@@ -27,11 +27,11 @@ class SessionsController < ApplicationController
     if user.name == '名無しさん'
       log_in user
       flash[:success] = 'ユーザー登録が完了しました'
-      redirect_to edit_user_path(user)
+      redirect_back_or edit_user_url(user)
     else
       log_in user
       flash[:success] = 'ログインしました'
-      redirect_to user
+      redirect_back_or user
     end
   end
 end

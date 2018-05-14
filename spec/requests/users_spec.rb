@@ -45,7 +45,7 @@ RSpec.describe "Users", type: :request do
                       name: user.name
         }
       }
-      expect(response).to redirect_to(login_url)
+      expect(response).to redirect_to(root_url)
     end
 
     # ログイン状態でも、本人以外であればトップページにリダイレクトされること

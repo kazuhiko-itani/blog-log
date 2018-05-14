@@ -44,13 +44,14 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :image_url)
     end
 
     def logged_in_user
       unless logged_in?
+        store_location
         flash[:danger] = 'ログインが必要なページです'
-        redirect_to login_path
+        redirect_to root_url
       end
     end
 
