@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback' => 'sessions#create'
 
   resources :users
+  resources :posts
 
   # テスト用ログインルート
   get 'login' => 'sessions#new'

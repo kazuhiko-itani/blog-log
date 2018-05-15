@@ -25,11 +25,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if params[:user][:name] == '名無しさん'
       flash[:danger] = '名前を変更してください'
       render 'edit'
@@ -45,14 +43,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :image_url)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = 'ログインが必要なページです'
-        redirect_to root_url
-      end
     end
 
     def correct_user

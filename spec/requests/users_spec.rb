@@ -16,26 +16,26 @@ RSpec.describe "Users", type: :request do
 
   describe '#edit' do
 
-      # 非ログイン状態ではリダイレクトされること
-      it 'redirect without login' do
-        get edit_user_path(user)
-        expect(response).to have_http_status '302'
-      end
-
-      # ログイン状態でも、本人以外であればリダイレクトされること
-      it 'redirect when logged in wrong user' do
-        login_as(other_user)
-        get edit_user_path(user)
-        expect(response).to have_http_status '302'
-      end
-
-      # ログイン状態、かつ本人であればアクセスできること
-      it 'success access with login and correct user' do
-        login_as(user)
-        get edit_user_path(user)
-        expect(response).to have_http_status '200'
-      end
+    # 非ログイン状態ではリダイレクトされること
+    it 'redirect without login' do
+      get edit_user_path(user)
+      expect(response).to have_http_status '302'
     end
+
+    # ログイン状態でも、本人以外であればリダイレクトされること
+    it 'redirect when logged in wrong user' do
+      login_as(other_user)
+      get edit_user_path(user)
+      expect(response).to have_http_status '302'
+    end
+
+    # ログイン状態、かつ本人であればアクセスできること
+    it 'success access with login and correct user' do
+      login_as(user)
+      get edit_user_path(user)
+      expect(response).to have_http_status '200'
+    end
+  end
 
   describe '#update' do
 
@@ -69,6 +69,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  # ログインメソッド
   def login_as(user)
     post '/test/login', params: { session: {
                   name: user.name

@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: ユーザー名
+        image_url: 画像
+    models:
+      post: 投稿
+    attributes:
+      post:
+        date: その日付の記録
+        context: メモ
+        working_hours: 作業時間（時）
+        working_minutes: 作業時間（分）

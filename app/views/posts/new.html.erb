@@ -1,0 +1,23 @@
+<% provide(:title, '作業時間、内容を記録') %>
+<h1>作業時間、内容を入力してね</h1>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <%= form_for(@post) do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+
+      <%= f.label :date, '日付' %>
+      <%= f.date_field :date, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+
+      <%= f.number_field :working_hours, value: 0, in: 0..23, step: 1,
+                                                  class: 'form-control' %>時間
+      <%= f.number_field :working_minutes, value: 0, in: 0..59, step: 1,
+                                                  class: 'form-control' %>分
+
+      <%= f.label :memo, '作業内容' %>
+      <%= f.text_field :memo, class: 'form-control' %>
+
+      <%= f.submit '登録', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

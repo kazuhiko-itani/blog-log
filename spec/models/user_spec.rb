@@ -2,16 +2,24 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:user) {FactoryGirl.build(:user) }
-
   # 有効なファクトリを持つこと
   it 'has a valid factory' do
+    user = FactoryGirl.build(:user)
     expect(user).to be_valid
+  end
+
+  # ユーザーが削除されると紐ついた投稿も削除されること
+  it 'delete associated-post when user is deleted' do
+    post = FactoryGirl.create(:post)
+    expect(Post.count).to eq 1
+
+    post.user.destroy
+    expect(Post.count).to eq 0
   end
 
   #バリデーションテスト
 
-  context 'name test' do
+  context 'name validate' do
 
     # 名前がなければ無効であること
     it 'is invalid without a name' do

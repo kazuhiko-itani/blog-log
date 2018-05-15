@@ -15,6 +15,7 @@ gem 'omniauth-twitter'
 gem 'dotenv-rails'
 gem 'carrierwave', '1.2.2'
 gem 'mini_magick', '4.7.0'
+gem 'rails-i18n'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     log_in user
     if user.name == '名無しさん'
       flash[:success] = 'ユーザー登録が完了しました'
-      redirect_back_or edit_user_url(user)
+      redirect_to edit_user_url(user)
     else
       flash[:success] = 'ログインしました'
       redirect_back_or user
