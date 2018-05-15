@@ -107,3 +107,29 @@ input, textarea, select, .uneditable-input {
     color: $state-danger-text;
   }
 }
+
+/* Users index */
+
+.users {
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+}
+
+/* table */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    padding-bottom: 10px;
+  }
+  td {
+    border: solid 1px #eaeaea;
+    padding: 0.5em;
+  }
+}

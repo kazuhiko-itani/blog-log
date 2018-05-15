@@ -2,3 +2,8 @@
 
 <%= @user.name %>
 <%= image_tag @user.image.url, size: 100 %>
+
+<% if current_user == @user || current_user.admin? %>
+  <%= link_to '退会する', @user, method: :delete,
+                      data: { confirm: '本当にユーザー記録を削除してよろしいですか？'} %>
+<% end %>

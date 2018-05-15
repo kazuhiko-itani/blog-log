@@ -1,0 +1,16 @@
+<% provide(:title, 'ユーザー一覧') %>
+<h1>ユーザー一覧</h1>
+
+<%= will_paginate %>
+
+<table class='users'>
+  <tr>
+    <th>ユーザ名</th>
+    <th>日付</th>
+    <th>作業時間</th>
+    <th>作業内容</th>
+  </tr>
+  <%= render @users %>
+</table>
+
+<%= will_paginate %>

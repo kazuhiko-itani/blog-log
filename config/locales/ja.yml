@@ -14,3 +14,6 @@ ja:
         context: メモ
         working_hours: 作業時間（時）
         working_minutes: 作業時間（分）
+  will_paginate:
+    previous_label: 前
+    next_label: 次
