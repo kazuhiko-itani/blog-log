@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180514061427) do
     t.datetime "updated_at", null: false
     t.string "uid"
     t.string "provider"
-    t.string "image_url"
+    t.string "image"
   end
 
 end

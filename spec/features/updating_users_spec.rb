@@ -21,7 +21,7 @@ RSpec.feature "UpdatingUsers", type: :feature do
     click_button '変更'
 
     expect(user.reload.name).to eq 'success'
-    expect(user.reload.image_url).to have_content 'test.jpg'
+    expect(user.reload.image).to have_content 'test.jpg'
     expect(page).to have_tag '.alert-success'
   end
 

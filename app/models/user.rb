@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-  mount_uploader :image_url, PictureUploader
+  mount_uploader :image, PictureUploader
   validates :name, presence: true, length: { maximum: 50 }
   validate :image_size
 
