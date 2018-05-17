@@ -4,10 +4,15 @@
   <div class='col-md-10 col-md-offset-1'>
     <div class='user-profile'>
       <%= image_tag @user.image.url, size: 100 %>
-      <h4><%= @user.name %></h4>
+      <h4>
+        <%= @user.name %>
+        <% if logged_in? && current_user == @user %>
+          <small><%= link_to '(プロフィールを編集)', edit_user_path(@user) %></small>
+        <% end %>
+      </h4>
       <p><%= @user.profile %></p>
       <% unless @user.blog_url.empty? %>
-        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url %></p>
+        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
       <% end %>
     </div>
     <div class='total-working_times'>
