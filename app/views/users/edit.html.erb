@@ -10,11 +10,14 @@
       <%= f.label :name, 'ユーザー名' %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :image, 'プロフィールアイコン' %>
-      <%= f.file_field :image, accept: 'image/jpeg,image/png' %>
-
       <%= f.label :profile, 'プロフィール（最大150文字）' %>
       <%= f.text_field :profile, class: 'form-control' %>
+
+      <%= f.label :blog_url, 'ブログ（サイト）URL  ※任意' %>
+      <%= f.text_field :blog_url, class: 'form-control' %>
+
+      <%= f.label :image, 'プロフィールアイコン  ※任意' %>
+      <%= f.file_field :image, accept: 'image/jpeg,image/png' %>
 
       <%= f.submit '変更', class: 'btn btn-primary' %>
     <% end %>

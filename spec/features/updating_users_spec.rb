@@ -10,20 +10,24 @@ RSpec.feature "UpdatingUsers", type: :feature do
     # 編集に失敗する
     fill_in 'ユーザー名', with: ' '
     fill_in 'プロフィール', with: ' '
+    fill_in 'ブログ（サイト）URL', with: ' '
     click_button '変更'
 
-    expect(user.reload.name).to eq user.name
-    expect(user.reload.profile).to eq user.profile
+    expect(user.reload.name).to_not eq ' '
+    expect(user.reload.profile).to_not eq ' '
+    expect(user.reload.blog_url).to_not eq ' '
     expect(page).to have_tag '.alert-danger'
 
     # 編集に成功する（パスワードは空でも可）
     fill_in 'ユーザー名', with: 'success'
-    attach_file 'プロフィールアイコン', "#{Rails.root}/spec/files/test.jpg"
     fill_in 'プロフィール', with: 'change profile'
+    fill_in 'ブログ（サイト）URL', with: 'http://change-brog-url'
+    attach_file 'プロフィールアイコン', "#{Rails.root}/spec/files/test.jpg"
     click_button '変更'
 
     expect(user.reload.name).to eq 'success'
     expect(user.reload.profile).to eq 'change profile'
+    expect(user.reload.blog_url).to eq 'http://change-brog-url'
     expect(user.reload.image).to have_content 'test.jpg'
     expect(page).to have_tag '.alert-success'
 

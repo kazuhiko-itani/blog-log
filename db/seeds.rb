@@ -2,6 +2,7 @@ User.create!(name: 'admin',
           uid: '919909356879036413',
           provider: 'twitter',
           profile: '管理者です',
+          blog_url: 'https://programmer-symbol.com',
           admin: true)
 
 99.times do |n|
@@ -12,7 +13,8 @@ User.create!(name: 'admin',
   User.create!(name: name,
               uid: uid,
               provider: provider,
-              profile: profile)
+              profile: profile,
+              blog_url: '')
 end
 
 users = User.order(:id).take(20)

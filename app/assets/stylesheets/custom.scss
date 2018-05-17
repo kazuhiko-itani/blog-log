@@ -39,7 +39,11 @@ h1 {
 }
 
 h4 {
-  padding-bottom: 20px
+  padding-bottom: 20px;
+}
+
+p {
+  padding-bottom: 10px;
 }
 
 /* header */
@@ -93,8 +97,14 @@ footer ul li {
 input, textarea, select, .uneditable-input {
   width: 100%;
   border: 1px solid #bbb;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   @include box-sizing
+}
+
+.btn {
+  width: 30%;
+  display: block;
+  margin: 0 auto;
 }
 
 #error_explanation {

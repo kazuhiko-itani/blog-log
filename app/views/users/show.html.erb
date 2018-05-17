@@ -6,6 +6,9 @@
       <%= image_tag @user.image.url, size: 100 %>
       <h4><%= @user.name %></h4>
       <p><%= @user.profile %></p>
+      <% unless @user.blog_url.empty? %>
+        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url %></p>
+      <% end %>
     </div>
     <div class='total-working_times'>
       <h3>合計作業時間</h3>

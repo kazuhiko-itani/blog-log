@@ -5,6 +5,7 @@ class User < ApplicationRecord
   mount_uploader :image, PictureUploader
   validates :name, presence: true, length: { maximum: 50 }
   validates :profile, length: { maximum: 150 }
+  validates :blog_url, length: { maximum: 100 }
   validate :image_size
 
   def self.find_or_create_from_auth(auth)
