@@ -13,7 +13,7 @@ RSpec.feature "Indexs", type: :feature do
     expect(page).to have_tag '.pagination'
     expect(page).to have_content 'Test memo'
 
-    click_link 'admin'
+    find('#today-table').click_link 'admin'
     expect(current_path).to eq user_path(@user)
     expect(page).to have_content 'まだ投稿はありません'
     # 非ログイン状態では「編集」のリンクがないことを確認

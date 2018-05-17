@@ -31,10 +31,23 @@ ul {
   list-style: none;
 }
 
+.pagination {
+  margin-bottom: 0;
+}
+
 /* typograph */
 
 h1 {
-  margin-bottom: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 25px;
+  text-align: center;
+}
+
+h3 {
   text-align: center;
 }
 
@@ -122,7 +135,12 @@ input, textarea, select, .uneditable-input {
   }
 }
 
-/* Users index */
+/* index */
+
+#time-table {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
 
 .users {
   margin: 0;
@@ -131,6 +149,27 @@ input, textarea, select, .uneditable-input {
     padding: 10px 0;
     border-bottom: 1px solid #eaeaea;
   }
+}
+
+.btn-field {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.change-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #dff0d8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #62c462;
+}
+
+#weekly-table {
+  display: none;
 }
 
 /* table */
@@ -150,6 +189,7 @@ table {
 }
 
 table.posts {
+  margin-top: 30px;
   td {
     padding: 20px;
   }

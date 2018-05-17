@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    # @posts_today = Post.where(date: Date.today).order(working_total: :desc)
   end
 
   def edit

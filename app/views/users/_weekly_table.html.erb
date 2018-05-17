@@ -1,0 +1,25 @@
+<table class='users'>
+  <tr>
+    <th>ユーザ名</th>
+    <th>作業時間</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= image_tag user.image.url, size: 50 %>
+        <%= link_to user.name, user %>
+      </td>
+
+      <% if (posts = user.posts.where(date: (Date.today - 7)...Date.today)) %>
+        <% working_weekly = caluculate_working_times_sum(posts) %>
+        <td>
+          <%= working_weekly / 60 %>時間
+          <%= working_weekly % 60 %>分
+        </td>
+      <% else %>
+        <td>0時間 0分</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

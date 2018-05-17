@@ -1,0 +1,28 @@
+$(document).ready(function() {
+
+  // 「今日」のボタンをクリックすることで、表示されるtableが今日の作業時間をまとめたものになる
+  $('.today-btn').click(function(){
+    $('#weekly-table').hide();
+    $('#today-table').fadeIn();
+    $('#time-table').children('h1').html(
+      "<%= Date.today.strftime('%m月%d日') %><%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
+    );
+  });
+
+  // 「1週間」のボタンをクリックすることで、表示されるtableが1週間の作業時間をまとめたものになる
+  $('.weekly-btn').click(function(){
+    $('#today-table').hide();
+    $('#weekly-table').fadeIn();
+    $('#time-table').children('h1').html(
+      "<%= (Date.today - 7).strftime('%m月%d日') %> 〜 <%= Date.today.strftime('%m月%d日') %>"
+    );
+  });
+
+  // 「今日」や「1週間」のボタンのうち、クリックされたボタンの色を変化させる
+  $('.change-btn').click(function(){
+    $('.change-btn').removeClass('active')
+    $(this).addClass('active')
+  });
+
+  $("p").css("color", "blue");
+});

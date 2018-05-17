@@ -1,18 +1,31 @@
 <% provide(:title, 'ユーザー一覧') %>
 
-<h1><%= Date.today.strftime('%m月%d日')%>
-<%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %></h1>
-<h1>みんなの作業時間</h1>
+  <div id='time-table'>
+    <h1>
+      <%= Date.today.strftime('%m月%d日') %>
+      <%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>
+    </h1>
+    <h2>みんなの作業時間</h2>
+  </div>
+
 
 <%= will_paginate %>
 
-<table class='users'>
-  <tr>
-    <th>ユーザ名</th>
-    <th>作業時間</th>
-    <th>作業内容</th>
-  </tr>
-  <%= render @users %>
-</table>
+<div class='btn-field'>
+  <div class='change-btn today-btn active'>今日</div>
+  <div class='change-btn weekly-btn'>1週間</div>
+</div>
+
+<div id='today-table'>
+  <%= render 'today_table' %>
+</div>
+
+<div id='weekly-table'>
+  <%= render 'weekly_table' %>
+</div>
+
+<div id='random-table'>
+  <%= render 'weekly_table' %>
+</div>
 
 <%= will_paginate %>
