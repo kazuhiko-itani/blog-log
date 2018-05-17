@@ -17,7 +17,7 @@ User.create!(name: 'admin',
               blog_url: '')
 end
 
-users = User.order(:id).take(20)
+users = User.order(:id).take(61)
 31.times do |n|
   users.each do |user|
     date = (Date.today - n)
