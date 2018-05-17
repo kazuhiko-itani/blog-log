@@ -5,12 +5,14 @@
     <div class='user-profile'>
       <%= image_tag @user.image.url, size: 100 %>
       <h4><%= @user.name %></h4>
+      <p><%= @user.profile %></p>
     </div>
     <div class='total-working_times'>
       <h3>合計作業時間</h3>
       <%= @working_hours %>時間
       <%= @working_minutes %>分
     </div>
+    <div class='clear'></div>
 
     <%= will_paginate @posts %>
 

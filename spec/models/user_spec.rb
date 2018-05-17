@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  # 有効なファクトリを持つこと
-  it 'has a valid factory' do
+  it '有効なファクトリを持つこと' do
     user = FactoryGirl.build(:user)
     expect(user).to be_valid
   end
 
-  # ユーザーが削除されると紐ついた投稿も削除されること
-  it 'delete associated-post when user is deleted' do
+  it 'ユーザーが削除されると紐ついた投稿も削除されること' do
     post = FactoryGirl.create(:post)
     expect(Post.count).to eq 1
 
@@ -17,19 +15,23 @@ RSpec.describe User, type: :model do
     expect(Post.count).to eq 0
   end
 
-  #バリデーションテスト
+  context 'バリデーションテスト（name）' do
 
-  context 'name validate' do
-
-    # 名前がなければ無効であること
-    it 'is invalid without a name' do
+    it '名前がなければ無効であること' do
       user = FactoryGirl.build(:user, name: nil)
       expect(user.valid?).to be false
     end
 
-    # 名前が長すぎると無効であること
-    it 'is invalid with too long name' do
+    it '名前が長すぎると無効であること' do
       user = FactoryGirl.build(:user, name: 'a' * 51)
+      expect(user.valid?).to be false
+    end
+  end
+
+  context 'バリデーションテスト（profile）' do
+
+    it '長すぎるプロフィールは無効であること' do
+      user = FactoryGirl.build(:user, profile: 'a' * 151)
       expect(user.valid?).to be false
     end
   end

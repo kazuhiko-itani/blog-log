@@ -1,15 +1,18 @@
 User.create!(name: 'admin',
           uid: '919909356879036413',
           provider: 'twitter',
+          profile: '管理者です',
           admin: true)
 
 99.times do |n|
   name = Faker::Japanese::Name.name
   uid = (919905356179036413 + n).to_s
   provider = 'twitter'
+  profile = Faker::Lorem.sentence(2)
   User.create!(name: name,
               uid: uid,
-              provider: provider)
+              provider: provider,
+              profile: profile)
 end
 
 users = User.order(:id).take(20)
@@ -19,7 +22,7 @@ users = User.order(:id).take(20)
     working_total = rand(10..400)
     working_hours = rand(0..23)
     working_minutes = rand(0..59)
-    memo = Faker::Lorem.sentence(2)
+    memo = '記事更新　リライト'
     user.posts.create!(date: date, working_total: working_total,
               working_hours: working_hours, working_minutes: working_minutes,
               memo: memo)
