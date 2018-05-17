@@ -23,6 +23,12 @@ RSpec.feature "UpdatingUsers", type: :feature do
     expect(user.reload.name).to eq 'success'
     expect(user.reload.image).to have_content 'test.jpg'
     expect(page).to have_tag '.alert-success'
+
+    # 退会する
+    visit edit_user_path(user)
+    expect {
+      click_link '退会する'
+    }.to change(User, :count).by(-1)
   end
 
   # フレンドリーフォワーディング

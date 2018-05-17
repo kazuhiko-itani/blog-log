@@ -13,13 +13,15 @@ User.create!(name: 'admin',
 end
 
 users = User.order(:id).take(20)
-users.each do |user|
-  date = Date.today
-  working_total = rand(10..400)
-  working_hours = rand(0..23)
-  working_minutes = rand(0..59)
-  memo = Faker::Lorem.sentence(2)
-  user.posts.create!(date: date, working_total: working_total,
-            working_hours: working_hours, working_minutes: working_minutes,
-            memo: memo)
+31.times do |n|
+  users.each do |user|
+    date = (Date.today - n)
+    working_total = rand(10..400)
+    working_hours = rand(0..23)
+    working_minutes = rand(0..59)
+    memo = Faker::Lorem.sentence(2)
+    user.posts.create!(date: date, working_total: working_total,
+              working_hours: working_hours, working_minutes: working_minutes,
+              memo: memo)
+  end
 end

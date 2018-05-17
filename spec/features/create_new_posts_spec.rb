@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "CreateNewPosts", type: :feature do
 
-  # 新しいpostを作成する
-  scenario 'create new post and delete' do
+  scenario '新しいpostを作成する' do
     user = FactoryGirl.create(:user)
     log_in_as(user)
 
@@ -29,6 +28,7 @@ RSpec.feature "CreateNewPosts", type: :feature do
 
     expect(current_path).to eq user_path(user)
     expect(page).to have_tag '.alert-success'
+    expect(page).to have_content '記事更新'
   end
 
   # ログイン処理

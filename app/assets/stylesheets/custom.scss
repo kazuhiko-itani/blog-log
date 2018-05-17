@@ -130,6 +130,23 @@ table {
   }
   td {
     border: solid 1px #eaeaea;
-    padding: 0.5em;
+    padding: 10px;
+    overflow: auto;
   }
+}
+
+.table-edit {
+  padding: 10px;
+}
+
+/* user profile */
+
+.user-profile {
+  padding: 50px 0;
+  float: left;
+}
+
+.total-working_times {
+  padding: 50px 0;
+  float: right;
 }

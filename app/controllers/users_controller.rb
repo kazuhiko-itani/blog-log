@@ -10,6 +10,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
+    @working_hours = caluculate_working_times_sum(@posts) / 60
+    @working_minutes = caluculate_working_times_sum(@posts) % 60
   end
 
   # 一時的に不要

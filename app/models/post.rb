@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   attr_accessor :working_hours, :working_minutes
 
   validates :date, presence: true, uniqueness: { scope: :user_id }
-  validates :memo, length: { maximum: 255 }
+  validates :memo, length: { maximum: 40 }
   validates :working_total, presence: true
   validates :working_hours, presence: true,
                             numericality: { only_integer: true,

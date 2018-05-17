@@ -8,6 +8,7 @@
     <% post.convert_working_total %>
     <td>
       <%= Date.today.strftime('%m-%d') %>
+      <%=  '（' + %w(日 月 火 水 木 金 土)[Date.today.wday] + '）' %>
     </td>
     <td>
       <%= post.working_hours %>時間

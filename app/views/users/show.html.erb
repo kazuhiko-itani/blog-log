@@ -1,9 +1,32 @@
 <% provide(:title, @user.name) %>
 
-<%= @user.name %>
-<%= image_tag @user.image.url, size: 100 %>
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
+    <div class='user-profile'>
+      <%= image_tag @user.image.url, size: 100 %>
+      <h4><%= @user.name %></h4>
+    </div>
+    <div class='total-working_times'>
+      <h3>合計作業時間</h3>
+      <%= @working_hours %>時間
+      <%= @working_minutes %>分
+    </div>
 
-<% if current_user == @user || current_user.admin? %>
-  <%= link_to '退会する', @user, method: :delete,
-                      data: { confirm: '本当にユーザー記録を削除してよろしいですか？'} %>
-<% end %>
+    <%= will_paginate @posts %>
+
+    <table class='posts'>
+      <% if @posts.any? %>
+        <tr>
+          <th>日付</th>
+          <th>作業時間</th>
+          <th>作業内容</th>
+        </tr>
+        <%= render @posts %>
+      <% else %>
+        まだ投稿はありません
+      <% end %>
+    </table>
+
+    <%= will_paginate @posts %>
+  </div>
+</div>
