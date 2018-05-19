@@ -1,15 +1,17 @@
 <% provide(:title, 'ユーザー一覧') %>
 
-  <div class='page-title'>
+  <div class='page-title top-page-title'>
     <h1>
       <%= Date.today.strftime('%m月%d日') %>
       <%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>
     </h1>
     <h2>みんなの作業時間</h2>
   </div>
+
   <div class='search-form'>
     <%= render 'search_user' %>
   </div>
+  <div class='clear'></div>
 
 
 <div class='btn-field'>

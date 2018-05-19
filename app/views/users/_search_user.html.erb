@@ -1,7 +1,11 @@
 <%= search_form_for(@q, url: search_users_path) do |f| %>
-  <%= f.label :name_cont, 'ユーザー検索' %>
-  <%= f.text_field :name_cont, class: 'form-control',
-                              placeholder: 'ユーザー名を入力' %>
-  <%= f.submit '検索', class: 'btn btn-primary' %>
+  <div class='search-input-group'>
+    <div class='search-label'>
+      <%= f.label :name_cont, 'ユーザー検索' %>
+    </div>
+    <%= f.text_field :name_cont, class: 'form-control',
+                                placeholder: 'ユーザー名を入力' %>
+    <%= f.submit '検索', class: 'btn btn-primary btn-search' %>
+  </div>
 
 <% end %>

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :post do
-    date '2018-05-05'
+    date Date.today
     memo "Test memo"
     working_total 90
     working_hours 1
@@ -8,15 +8,11 @@ FactoryGirl.define do
     association :user
 
     trait :date_yesterday do
-      date '2018-05-04'
+      date Date.today - 1
     end
 
     trait :date_tomorrow do
-      date '2018-05-06'
-    end
-
-    trait :date_today do
-      date Date.today
+      date Date.today + 1
     end
 
     trait :other_user_post do

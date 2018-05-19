@@ -4,7 +4,12 @@
   <h1>ユーザー検索結果</h1>
 </div>
 
-<%= will_paginate @search_user %>
+<div class='search-form'>
+    <%= render 'search_user' %>
+  </div>
+  <div class='clear'></div>
+
+<%= will_paginate @search_user, class: 'pagination-top' %>
 
 <table class='users'>
   <tr>

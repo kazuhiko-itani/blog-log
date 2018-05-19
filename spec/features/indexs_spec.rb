@@ -4,7 +4,7 @@ RSpec.feature "Indexs", type: :feature do
   before do
     @user = FactoryGirl.create(:user, :admin)
     31.times do
-      FactoryGirl.create(:post, :date_today)
+      FactoryGirl.create(:post)
     end
   end
 
