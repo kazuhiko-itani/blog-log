@@ -19,6 +19,7 @@ gem 'rails-i18n'
 gem 'faker', '1.7.3'
 gem 'faker-japanese'
 gem 'will_paginate', '3.1.6'
+gem 'kaminari', '0.17.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'ransack', '1.8.4'
 # Use sqlite3 as the database for Active Record

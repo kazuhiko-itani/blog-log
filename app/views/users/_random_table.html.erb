@@ -1,4 +1,4 @@
-<%= will_paginate %>
+<%= will_paginate @users_random %>
 
 <table class='users'>
   <tr>
@@ -7,8 +7,8 @@
     <th>作業内容</th>
   </tr>
 
-  <% @users.shuffle.each do |user| %>
-    <% post = user.posts.where(date: Date.today) %>
+  <% @users_random.shuffle.each do |user| %>
+    <% post = user.posts.find_by(date: Date.today) %>
     <tr>
       <td>
         <%= image_tag user.image.url, size: 50 %>
@@ -22,9 +22,9 @@
       </td>
       <td>
         <%= post.memo %>
-        </td>
+      </td>
     </tr>
   <% end %>
 </table>
 
-<%= will_paginate %>
+<%= will_paginate @users_random %>
