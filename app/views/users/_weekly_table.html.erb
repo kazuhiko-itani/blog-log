@@ -1,3 +1,4 @@
+<%= will_paginate %>
 
 <table class='users'>
   <tr>
@@ -5,7 +6,7 @@
     <th>作業時間</th>
   </tr>
 
-  <% @users.each do |user| %>
+  <% @users.shuffle.each do |user| %>
     <% posts = user.posts.where(date: (Date.today - 7)...Date.today) %>
     <% unless posts.empty? %>
       <tr>
@@ -22,3 +23,5 @@
     <% end %>
   <% end %>
 </table>
+
+<%= will_paginate %>

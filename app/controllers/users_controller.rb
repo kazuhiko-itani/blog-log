@@ -28,8 +28,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.order('RANDOM()')
-    @posts_today = Post.where(date: Date.today).order(working_total: :desc)
+    @users = User.order('RANDOM()').paginate(page: params[:page])
+    @posts_today = Post.where(date: Date.today).order(working_total: :desc).paginate(page: params[:page])
   end
 
   def edit
