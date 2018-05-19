@@ -28,9 +28,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @q = User.ransack(distinct: true)
-    @users = @q.result.paginate(page: params[:page])
+    @users = User.all.paginate(page: params[:page])
     @posts_today = Post.where(date: Date.today).order(working_total: :desc).paginate(page: params[:page])
+    @q = User.ransack(distinct: true)
   end
 
   def search

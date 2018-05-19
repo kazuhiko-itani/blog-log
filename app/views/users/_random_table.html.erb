@@ -8,13 +8,13 @@
   </tr>
 
   <% @users.shuffle.each do |user| %>
-    <% if (post = user.posts.find_by(date: Date.today)) %>
-      <tr>
-        <td>
-          <%= image_tag user.image.url, size: 50 %>
-          <%= link_to user.name, user %>
-        </td>
+    <tr>
+      <td>
+        <%= image_tag user.image.url, size: 50 %>
+        <%= link_to user.name, user %>
+      </td>
 
+      <% if (post = user.posts.find_by(date: Date.today)) %>
         <% post.convert_working_total %>
         <td>
           <%= post.working_hours %>時間
@@ -23,8 +23,8 @@
         <td>
           <%= post.memo %>
         </td>
-      </tr>
-    <% end %>
+      <% end %>
+    </tr>
   <% end %>
 </table>
 
