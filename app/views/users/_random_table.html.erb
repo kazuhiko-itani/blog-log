@@ -7,7 +7,7 @@
     <th>作業内容</th>
   </tr>
 
-  <% @users.each do |user| %>
+  <% @users.shuffle.each do |user| %>
     <% if (post = user.posts.find_by(date: Date.today)) %>
       <tr>
         <td>

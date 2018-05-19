@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   # Twitterでのログイン
   get 'auth/:provider/callback' => 'sessions#create'
 
-  resources :users
+  resources :users do
+    # 検索処理アクション
+    collection do
+      get :search
+    end
+  end
   resources :posts
 
   # テスト用ログインルート

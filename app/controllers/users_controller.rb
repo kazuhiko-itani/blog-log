@@ -28,8 +28,21 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.order('RANDOM()').paginate(page: params[:page])
+    @q = User.ransack(distinct: true)
+    @users = @q.result.paginate(page: params[:page])
     @posts_today = Post.where(date: Date.today).order(working_total: :desc).paginate(page: params[:page])
+  end
+
+  def search
+    if params[:q]
+      @q = User.ransack(search_params)
+      @search_user = @q.result.paginate(page: params[:page])
+    else
+      redirect_to users_path
+    end
+  end
+
+  def result
   end
 
   def edit
@@ -57,6 +70,10 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :image, :profile, :blog_url)
+    end
+
+    def search_params
+      params.require(:q).permit(:name_cont)
     end
 
     def correct_user

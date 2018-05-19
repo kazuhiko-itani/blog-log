@@ -1,0 +1,40 @@
+<% provide(:title, 'ユーザー検索') %>
+
+<div class='page-title'>
+  <h1>ユーザー検索結果</h1>
+</div>
+
+<%= will_paginate @search_user %>
+
+<table class='users'>
+  <tr>
+    <th>ユーザ名</th>
+    <th>作業時間</th>
+    <th>作業内容</th>
+  </tr>
+
+  <% @search_user.each do |user| %>
+    <tr>
+      <td>
+        <%= image_tag user.image.url, size: 50 %>
+        <%= link_to user.name, user %>
+      </td>
+
+      <% if (post = user.posts.find_by(date: Date.today)) %>
+        <% post.convert_working_total %>
+        <td>
+          <%= post.working_hours %>時間
+          <%= post.working_minutes %>分
+        </td>
+        <td>
+          <%= post.memo %>
+        </td>
+      <% else %>
+        <td>0時間 0分</td>
+        <td></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @search_user %>
