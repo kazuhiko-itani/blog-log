@@ -22,6 +22,17 @@
     </div>
     <div class='clear'></div>
 
+    <% if logged_in? && @user == current_user %>
+      <div class='tweet-btn'>
+        <div class='tweet-label'>今日の作業時間をツイートする</div>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+        data-text='<%= "今日の作業時間は#{@working_today_hour}時間#{@working_today_minute}分でした。" %>'
+        class="twitter-share-button" data-show-count="false">tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <div class='clear'></div>
+    <% end %>
+
     <%= will_paginate @posts %>
 
     <table class='posts'>

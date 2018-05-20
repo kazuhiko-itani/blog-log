@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     @posts = @user.posts.paginate(page: params[:page])
     @working_hours = caluculate_working_times_sum(@posts) / 60
     @working_minutes = caluculate_working_times_sum(@posts) % 60
+
+    post_today = @user.posts.find_by(date: Date.today)
+    today_working_total = post_today ? post_today.working_total : 0
+    @working_today_hour, @working_today_minute =
+                    convert_today_working_total_to_hours_and_minutes(today_working_total)
   end
 
   # 一時的に不要
