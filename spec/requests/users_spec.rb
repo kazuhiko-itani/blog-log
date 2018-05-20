@@ -108,6 +108,22 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe '#search' do
+
+    it '検索フォームを経由しないアクセスはユーザー一覧ページにリダイレクトされること' do
+      get search_users_path
+      expect(response).to redirect_to users_path
+    end
+
+    it '検索フォームを経由すれば正常にアクセスできること' do
+      get search_users_path, params: { q: {
+                                  name_cont: 'admin'
+        }
+      }
+      expect(response).to have_http_status '200'
+    end
+  end
+
   # ログインメソッド
   def log_in_as(user)
     post '/test/login', params: { session: {
