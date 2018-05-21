@@ -1,17 +1,8 @@
 $(document).ready(function() {
 
-  $('.random-btn').click(function(){
-    $('#weekly-table').hide();
-    $('#today-table').hide();
-    $('#random-table').fadeIn();
-    $('#time-table').children('h1').html(
-      "<%= Date.today.strftime('%m月%d日') %><%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
-    );
-  });
-
   // 「今日」のボタンをクリックすることで、表示されるtableが今日の作業時間をまとめたものになる
   $('.today-btn').click(function(){
-    $('#random-table').hide();
+    $('#yesterday-table').hide();
     $('#weekly-table').hide();
     $('#today-table').fadeIn();
     $('#time-table').children('h1').html(
@@ -19,9 +10,19 @@ $(document).ready(function() {
     );
   });
 
+  // 「昨日」のボタンをクリックすることで、表示されるtableが昨日の作業時間をまとめたものになる
+  $('.yesterday-btn').click(function(){
+    $('#weekly-table').hide();
+    $('#today-table').hide();
+    $('#yesterday-table').fadeIn();
+    $('#time-table').children('h1').html(
+      "<%= (Date.yesterday).strftime('%m月%d日') %><%=  '(' + %w(日 月 火 水 木 金 土)[(Date.yesterday).wday] + ')' %>"
+    );
+  });
+
   // 「1週間」のボタンをクリックすることで、表示されるtableが1週間の作業時間をまとめたものになる
   $('.weekly-btn').click(function(){
-    $('#random-table').hide();
+    $('#yesterday-table').hide();
     $('#today-table').hide();
     $('#weekly-table').fadeIn();
     $('#time-table').children('h1').html(

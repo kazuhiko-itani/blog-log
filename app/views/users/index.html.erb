@@ -2,7 +2,7 @@
 
 <div class='row'>
   <div class='col-xs-12'>
-    <div class='page-title top-page-title'>
+    <div class='page-title top-page-title' id='time-table'>
       <h1>
         <%= Date.today.strftime('%m月%d日') %>
         <%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>
@@ -20,17 +20,17 @@
 <div class='row'>
   <div class='col-xs-12'>
     <div class='btn-field'>
-      <div class='change-btn random-btn active'>ランダム順</div>
-      <div class='change-btn today-btn'>今日</div>
-      <div class='change-btn weekly-btn'>1週間</div>
-    </div>
-
-    <div id='random-table'>
-      <%= render 'random_table' %>
+      <div class='change-btn today-btn active'>今日</div>
+      <div class='change-btn yesterday-btn'>昨日</div>
+      <div class='change-btn weekly-btn'>1週間(ランダム順)</div>
     </div>
 
     <div id='today-table'>
       <%= render 'today_table' %>
+    </div>
+
+    <div id='yesterday-table'>
+      <%= render 'yesterday_table' %>
     </div>
 
     <div id='weekly-table'>
