@@ -10,10 +10,6 @@
           <small><%= link_to '(プロフィールを編集)', edit_user_path(@user) %></small>
         <% end %>
       </h4>
-      <p><%= @user.profile %></p>
-      <% unless @user.blog_url.empty? %>
-        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
-      <% end %>
     </div>
     <div class='total-working_times'>
       <h3>合計作業時間</h3>
@@ -21,6 +17,13 @@
       <%= @working_minutes %>分
     </div>
     <div class='clear'></div>
+
+    <div class='user-description'>
+      <p><%= @user.profile %></p>
+      <% unless @user.blog_url.empty? %>
+        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
+      <% end %>
+    </div>
 
     <% if logged_in? && @user == current_user %>
       <div class='tweet-btn'>
@@ -32,21 +35,21 @@
       </div>
       <div class='clear'></div>
     <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-10 col-md-offset-1'>
 
     <%= will_paginate @posts %>
 
-    <table class='posts'>
-      <% if @posts.any? %>
-        <tr>
-          <th>日付</th>
-          <th>作業時間</th>
-          <th>作業内容</th>
-        </tr>
-        <%= render @posts %>
-      <% else %>
-        まだ投稿はありません
-      <% end %>
-    </table>
+    <div id='user-posts-mobile'>
+      <%= render 'posts/posts_table_mobile' %>
+    </div>
+
+    <div id='user-posts-pc'>
+      <%= render 'posts/posts_table_pc' %>
+    </div>
 
     <%= will_paginate @posts %>
   </div>

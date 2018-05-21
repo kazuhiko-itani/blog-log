@@ -1,0 +1,37 @@
+<table class='posts'>
+  <% if @posts.any? %>
+    <tr>
+      <th>日付</th>
+      <th>作業時間</th>
+    </tr>
+    
+    <% @posts.each do |post| %>
+      <% post.convert_working_total %>
+      <tr>
+        <td>
+          <%= post.date.strftime('%m-%d') %>
+          <%=  '（' + %w(日 月 火 水 木 金 土)[post.date.wday] + '）' %>
+        </td>
+        <td>
+          <%= post.working_hours %>時間
+          <%= post.working_minutes %>分
+        </td>
+        <% if logged_in? && current_user == @user %>
+          <td class='table-edit'>
+            <%= link_to '編集', edit_post_path(post) %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td colspan='3'>
+          <%= post.memo %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    まだ投稿はありません
+  <% end %>
+</table>
+
+
+

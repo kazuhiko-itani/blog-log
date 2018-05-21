@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     users_have_weekly_data = User.all.reject {
       |user| user.posts.where(date: (Date.today - 7)... Date.today).blank?
     }.shuffle
-    @users_weekly = Kaminari.paginate_array(users_have_weekly_data).page(params[:page])
+    @users_weekly = Kaminari.paginate_array(users_have_weekly_data).page(params[:page]).per(25)
 
     # 「今日」「昨日」表示用のインスタンス変数
     @posts_today = Post.where(date: Date.today).order(working_total: :desc).page(params[:page])
