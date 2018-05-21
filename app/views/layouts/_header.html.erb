@@ -2,7 +2,7 @@
   <div class='container'>
     <%= link_to 'ブログろぐ', users_path, id: 'logo' %>
     <nav>
-      <ul class='nav navbar-nav navbar-right'>
+      <ul class='nav navbar-nav navbar-right' id='pc-nav'>
         <li><%= link_to 'トップ', users_path %></li>
         <% if logged_in? %>
           <li><%= link_to '記録する', new_post_path %></li>
@@ -11,6 +11,25 @@
         <% else %>
           <li><%= link_to 'ブログろぐとは？', help_path %></li>
           <li><%= link_to 'ログイン/新規登録', '/auth/twitter' %></li>
+        <% end %>
+      </ul>
+
+      <ul class='nav navbar-nav navbar-right' id='mobile-nav'>
+        <% if logged_in? %>
+          <li class='mobile-gloval-nav'><%= link_to 'マイページ', user_path(current_user) %></li>
+          <li class='dropdown mobile-gloval-nav'>
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+              <i class="fas fa-bars"></i><b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li><%= link_to 'ユーザー検索', new_post_path %></li>
+              <li><%= link_to 'トップへ', root_path %></li>
+              <li><%= link_to '記録する', new_post_path %></li>
+              <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'ログイン', '/auth/twitter' %></li>
         <% end %>
       </ul>
     </nav>

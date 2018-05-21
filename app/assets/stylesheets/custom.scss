@@ -45,6 +45,10 @@ ul {
   margin-top: 0;
 }
 
+.flash {
+  padding-top: 30px;
+}
+
 /* typograph */
 
 h1 {
@@ -81,6 +85,10 @@ p {
   &:hover {
     text-decoration: none;
   }
+}
+
+#responsive-nav {
+  display: none;
 }
 
 /* footer */
@@ -268,12 +276,43 @@ table {
 
 @media screen and (max-width:768px){
 
+  #pc-nav {
+    display: none;
+  }
+
+  #mobile-nav {
+    display: block;
+    float: right;
+    .mobile-gloval-nav {
+      float: left;
+    }
+
+    .fa-bars {
+      font-size: 20px
+    }
+  }
+
   .search-form {
     display: none;
   }
 }
 
 @media screen and (max-width:1024px){
+
+  #pc-nav {
+    display: none;
+  }
+
+  #mobile-nav {
+    display: block;
+    float: right;
+    .mobile-gloval-nav {
+      float: left;
+    }
+    .fa-bars {
+      font-size: 20px
+    }
+  }
 
   .search-form {
     display: none;
