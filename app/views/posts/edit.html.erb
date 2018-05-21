@@ -2,6 +2,7 @@
 
 <div class='page-title'>
   <h1>記録の編集</h1>
+  <h3><%= @post.date %></h3>
 </div>
 
 <div class='row'>
@@ -9,12 +10,11 @@
     <%= form_for(@post) do |f| %>
       <%= render 'shared/error_message', object: f.object %>
 
-      <h3><%= @post.date %></h3>
       <%= f.number_field :working_hours, value: @post.working_hours, in: 0..23, step: 1,
-                                                  class: 'form-control' %>時間
+                                                  class: 'form-control, form-hour' %>時間
 
       <%= f.number_field :working_minutes, value: @post.working_minutes, in: 0..59, step: 1,
-                                                  class: 'form-control' %>分
+                                                  class: 'form-control, form-minute' %>分
 
       <%= f.label :memo, '作業内容' %>
       <%= f.text_field :memo, class: 'form-control' %>

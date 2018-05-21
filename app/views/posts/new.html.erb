@@ -10,12 +10,12 @@
       <%= render 'shared/error_message', object: f.object %>
 
       <%= f.label :date, '日付' %>
-      <%= f.date_field :date, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+      <%= f.date_field :date, value: Time.now.strftime('%Y-%m-%d'), class: 'form-control, form-date' %>
 
       <%= f.number_field :working_hours, value: 0, in: 0..23, step: 1,
-                                                  class: 'form-control' %>時間
+                                                  class: 'form-control, form-hour' %>時間
       <%= f.number_field :working_minutes, value: 0, in: 0..59, step: 1,
-                                                  class: 'form-control' %>分
+                                                  class: 'form-control, form-minute' %>分
 
       <%= f.label :memo, '作業内容' %>
       <%= f.text_field :memo, class: 'form-control' %>

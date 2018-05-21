@@ -36,12 +36,12 @@ class UsersController < ApplicationController
     users_have_today_data = User.all.reject {
       |user| user.posts.where(date: Date.today).blank?
     }.shuffle
-    @users_random = Kaminari.paginate_array(users_have_today_data).page(params[:page]).per(15)
+    @users_random = Kaminari.paginate_array(users_have_today_data).page(params[:page]).per(10)
 
     users_have_weekly_data = User.all.reject {
       |user| user.posts.where(date: (Date.today - 7)... Date.today).blank?
     }.shuffle
-    @users_weekly = Kaminari.paginate_array(users_have_weekly_data).page(params[:page]).per(15)
+    @users_weekly = Kaminari.paginate_array(users_have_weekly_data).page(params[:page]).per(10)
 
     @posts_today = Post.where(date: Date.today).order(working_total: :desc).page(params[:page])
     @q = User.ransack(distinct: true)

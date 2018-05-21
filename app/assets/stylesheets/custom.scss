@@ -12,7 +12,7 @@
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 section {
@@ -24,7 +24,7 @@ section {
 }
 
 .center h1 {
-  margin-bottom: 10px
+  margin-bottom: 5px
 }
 
 ul {
@@ -48,6 +48,7 @@ ul {
 /* typograph */
 
 h1 {
+  font-size: 40px;
   margin: 20px 0;
   text-align: center;
 }
@@ -73,12 +74,11 @@ p {
 
 #logo {
   float: left;
-  font-size: 20px;
+  font-size: 24px;
   color: white;
   padding-top: 9px;
   font-weight: bold ;
   &:hover {
-    color: red;
     text-decoration: none;
   }
 }
@@ -88,7 +88,7 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #fff;
   color: #777
 }
 
@@ -119,8 +119,9 @@ footer ul li {
 
 input, textarea, select, .uneditable-input {
   width: 100%;
-  border: 1px solid #bbb;
+  border: 1px solid #ccc;
   margin-bottom: 25px;
+  border-radius: 4px;
   @include box-sizing
 }
 
@@ -143,6 +144,23 @@ input, textarea, select, .uneditable-input {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.form-date {
+  width: 30%;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.form-hour {
+  width: 40%;
+  margin-right: 5px;
+}
+
+.form-minute {
+  width: 40%;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 /* index */
@@ -245,5 +263,19 @@ table {
   float: left;
   .tweet-label {
     padding-bottom: 5px;
+  }
+}
+
+@media screen and (max-width:768px){
+
+  .search-form {
+    display: none;
+  }
+}
+
+@media screen and (max-width:1024px){
+
+  .search-form {
+    display: none;
   }
 }
