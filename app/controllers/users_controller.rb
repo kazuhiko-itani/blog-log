@@ -45,7 +45,11 @@ class UsersController < ApplicationController
     @q = User.ransack(distinct: true)
   end
 
-  def search
+  def search_form
+    @q = User.ransack(distinct: true)
+  end
+
+  def search_result
     if params[:q]
       @q = User.ransack(search_params)
       @search_user = @q.result.paginate(page: params[:page])

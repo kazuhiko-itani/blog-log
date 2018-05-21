@@ -4,7 +4,7 @@
   <tr>
     <th>ユーザ名</th>
     <th>作業時間</th>
-    <th>作業内容</th>
+    <th class='table-memo'>作業内容</th>
   </tr>
 
   <% @posts_yesterday.each do |post| %>
@@ -19,7 +19,7 @@
         <%= post.working_hours %>時間
         <%= post.working_minutes %>分
       </td>
-      <td>
+      <td class='table-memo'>
         <%= post.memo %>
       </td>
     </tr>

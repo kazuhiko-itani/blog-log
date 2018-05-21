@@ -16,15 +16,17 @@
 
       <ul class='nav navbar-nav navbar-right' id='mobile-nav'>
         <% if logged_in? %>
-          <li class='mobile-gloval-nav'><%= link_to 'マイページ', user_path(current_user) %></li>
+          <li class='mobile-gloval-nav'>
+            <%= link_to 'マイページ', user_path(current_user) %>
+          </li>
           <li class='dropdown mobile-gloval-nav'>
             <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
               <i class="fas fa-bars"></i><b class='caret'></b>
             </a>
             <ul class='dropdown-menu'>
-              <li><%= link_to 'ユーザー検索', new_post_path %></li>
               <li><%= link_to 'トップへ', root_path %></li>
               <li><%= link_to '記録する', new_post_path %></li>
+              <li><%= link_to 'ユーザー検索', search_form_users_path %></li>
               <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
             </ul>
           </li>

@@ -87,7 +87,7 @@ p {
   }
 }
 
-#responsive-nav {
+#mobile-nav {
   display: none;
 }
 
@@ -155,7 +155,7 @@ input, textarea, select, .uneditable-input {
 }
 
 .form-date {
-  width: 30%;
+  width: 40%;
   display: block;
   margin-bottom: 30px;
 }
@@ -295,6 +295,10 @@ table {
   .search-form {
     display: none;
   }
+
+  .table-memo {
+    display: none;
+  }
 }
 
 @media screen and (max-width:1024px){
@@ -315,6 +319,10 @@ table {
   }
 
   .search-form {
+    display: none;
+  }
+
+  .table-memo {
     display: none;
   }
 }

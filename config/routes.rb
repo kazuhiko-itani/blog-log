@@ -14,12 +14,13 @@ Rails.application.routes.draw do
   resources :users do
     # 検索処理アクション
     collection do
-      get :search
+      get :search_form
+      get :search_result
     end
   end
   resources :posts
 
-  # テスト用ログインルート
+  # テスト用ログインアクション
   get 'login' => 'sessions#new'
   post 'test/login' => 'sessions#login'
 end
