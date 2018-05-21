@@ -111,12 +111,12 @@ RSpec.describe "Users", type: :request do
   describe '#search' do
 
     it '検索フォームを経由しないアクセスはユーザー一覧ページにリダイレクトされること' do
-      get search_users_path
+      get search_result_users_path
       expect(response).to redirect_to users_path
     end
 
     it '検索フォームを経由すれば正常にアクセスできること' do
-      get search_users_path, params: { q: {
+      get search_result_users_path, params: { q: {
                                   name_cont: 'admin'
         }
       }

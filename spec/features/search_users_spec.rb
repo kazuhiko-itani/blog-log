@@ -18,7 +18,7 @@ RSpec.feature "SearchUsers", type: :feature do
     find('#q_name_cont').set('admin')
     find('.btn-search').click
 
-    expect(current_path).to eq search_users_path
+    expect(current_path).to eq search_result_users_path
     expect(page).to have_content @admin.name
     expect(page).to_not have_content @user.name
   end
