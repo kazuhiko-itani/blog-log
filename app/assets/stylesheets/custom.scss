@@ -49,6 +49,17 @@ ul {
   padding-top: 30px;
 }
 
+#post-btn {
+  font-size: 25px;
+  padding: 7px;
+  border-radius: 50%;
+  background-color: #58BF3F;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  display: none;
+}
+
 /* typograph */
 
 h1 {
@@ -301,6 +312,10 @@ table {
     }
   }
 
+  #post-btn {
+    display: block;
+  }
+
   .user-description {
     width: 100%;
   }
@@ -337,6 +352,10 @@ table {
     .fa-bars {
       font-size: 20px;
     }
+  }
+
+  #post-btn {
+    display: block;
   }
 
   .user-description {

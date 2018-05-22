@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517034957) do
+ActiveRecord::Schema.define(version: 20180521094917) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180517034957) do
     t.boolean "admin", default: false
     t.text "profile"
     t.string "blog_url"
+    t.string "twitter_url"
   end
 
 end

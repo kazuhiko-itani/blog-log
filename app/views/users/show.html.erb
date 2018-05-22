@@ -52,5 +52,11 @@
     </div>
 
     <%= will_paginate @posts %>
+
+    <% if logged_in? && @user == current_user %>
+      <p id='post-btn'><%= link_to new_post_path do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    <% end %>
   </div>
 </div>
