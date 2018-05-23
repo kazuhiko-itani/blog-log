@@ -17,8 +17,13 @@ Rails.application.routes.draw do
       get :search_form
       get :search_result
     end
+    # フォロー表示ページ
+    member do
+      get :following
+    end
   end
   resources :posts
+  resources :relationships, only: [:create, :destroy]
 
   # テスト用ログインアクション
   get 'login' => 'sessions#new'

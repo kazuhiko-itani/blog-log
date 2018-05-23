@@ -1,6 +1,6 @@
 module PostsHelper
 
-  # 作業時間の合計を算出する 引数はArray型
+  # 作業時間の合計を算出する
   def caluculate_working_times_sum(posts)
     working_times_sum = 0
     posts.each do |post|

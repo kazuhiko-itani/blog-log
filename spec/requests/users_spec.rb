@@ -97,14 +97,14 @@ RSpec.describe "Users", type: :request do
     it 'ログイン状態、かつ本人であれば削除処理の後、ユーザー一覧ページにリダイレクトされること' do
       log_in_as user
       delete user_path(user)
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to users_url
     end
 
     it '管理者（admin）であれば他のユーザーを削除でき、処理後にユーザー一覧ページにリダイレクトされること' do
       admin = FactoryGirl.create(:user, :admin)
       log_in_as admin
       delete user_path(other_user)
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to users_url
     end
   end
 
@@ -112,7 +112,7 @@ RSpec.describe "Users", type: :request do
 
     it '検索フォームを経由しないアクセスはユーザー一覧ページにリダイレクトされること' do
       get search_result_users_path
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to users_url
     end
 
     it '検索フォームを経由すれば正常にアクセスできること' do
@@ -120,6 +120,26 @@ RSpec.describe "Users", type: :request do
                                   name_cont: 'admin'
         }
       }
+      expect(response).to have_http_status '200'
+    end
+  end
+
+  describe '#following' do
+
+    it '非ログイン状態ではトップページにリダイレクトされること' do
+      get following_user_path(user)
+      expect(response).to redirect_to root_url
+    end
+
+    it 'ログイン状態でも本人以外であればトップページにリダイレクトされること' do
+      log_in_as user
+      get following_user_path(other_user)
+      expect(response).to redirect_to root_url
+    end
+
+    it 'ログイン状態かつ本人なら正常にアクセスできること' do
+      log_in_as user
+      get following_user_path(user)
       expect(response).to have_http_status '200'
     end
   end

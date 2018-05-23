@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
+  has_many :relationships, foreign_key: 'follower_id',
+                          dependent: :destroy
+  has_many :following, through: :relationships, source: :followed
 
   mount_uploader :image, PictureUploader
   validates :name, presence: true, length: { maximum: 50 }
@@ -25,10 +28,16 @@ class User < ApplicationRecord
     end
   end
 
-  def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+  def follow(other_user)
+    relationships.create(followd_id: other_user.id)
+  end
+
+  def unfollow(other_user)
+    relationships.find_by(folloed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   def image_size

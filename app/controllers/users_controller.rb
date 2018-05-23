@@ -1,23 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :following]
+  before_action :correct_user, only: [:edit, :update, :destroy, :following]
 
   # 一時的に不要
   def new
     @user = User.new
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.paginate(page: params[:page])
-    @working_hours = caluculate_working_times_sum(@posts) / 60
-    @working_minutes = caluculate_working_times_sum(@posts) % 60
-
-    post_today = @user.posts.find_by(date: Date.today)
-    today_working_total = post_today ? post_today.working_total : 0
-    @working_today_hour, @working_today_minute =
-                    convert_today_working_total_to_hours_and_minutes(today_working_total)
   end
 
   # 一時的に不要
@@ -32,6 +20,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
+
+    post_today = @user.posts.find_by(date: Date.today)
+    today_working_total = post_today ? post_today.working_total : 0
+    @working_today_hour, @working_today_minute =
+                    convert_today_working_total_to_hours_and_minutes(today_working_total)
+  end
+
   def index
     # ランダム表示用のインスタンス変数
     users_have_weekly_data = User.all.reject {
@@ -43,6 +41,11 @@ class UsersController < ApplicationController
     @posts_today = Post.where(date: Date.today).order(working_total: :desc).page(params[:page])
     @posts_yesterday = Post.where(date: Date.yesterday).order(working_total: :desc).page(params[:page])
     @q = User.ransack(distinct: true)
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @following = @user.following.page(params[:page])
   end
 
   def search_form

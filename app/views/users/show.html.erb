@@ -1,4 +1,6 @@
 <% provide(:title, @user.name) %>
+<% working_hours_total = caluculate_working_times_sum(@posts) / 60 %>
+<% working_minutes_total = caluculate_working_times_sum(@posts) % 60 %>
 
 <div class='row'>
   <div class='col-md-10 col-md-offset-1'>
@@ -8,13 +10,15 @@
         <%= @user.name %>
         <% if logged_in? && current_user == @user %>
           <small><%= link_to '(プロフィールを編集)', edit_user_path(@user) %></small>
+        <% elsif logged_in? %>
+          <%= render 'follow_form' %>
         <% end %>
       </h4>
     </div>
     <div class='total-working_times'>
       <h3>合計作業時間</h3>
-      <%= @working_hours %>時間
-      <%= @working_minutes %>分
+      <%= working_hours_total %>時間
+      <%= working_minutes_total %>分
     </div>
     <div class='clear'></div>
 
