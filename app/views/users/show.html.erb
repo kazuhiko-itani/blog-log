@@ -20,7 +20,8 @@
 
     <div class='user-description'>
       <p><%= @user.profile %></p>
-      <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
+      <p>ブログ: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
+      <p>Twitter: <%= link_to @user.twitter_url, @user.twitter_url, :target=>["_blank"] %></p>
     </div>
 
     <% if logged_in? && @user == current_user %>

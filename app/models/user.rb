@@ -5,7 +5,8 @@ class User < ApplicationRecord
   mount_uploader :image, PictureUploader
   validates :name, presence: true, length: { maximum: 50 }
   validates :profile, length: { maximum: 150 }
-  validates :blog_url, length: { maximum: 100 }
+  validates :blog_url, length: { maximum: 70 }
+  validates :twitter_url, length: { maximum: 70 }
   validate :image_size
 
   def self.find_or_create_from_auth(auth)
@@ -21,6 +22,7 @@ class User < ApplicationRecord
       user.name = user_name
       user.profile = profile
       user.blog_url = blog_url
+      user.twitter_url = twitter_url
     end
   end
 

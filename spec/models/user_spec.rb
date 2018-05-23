@@ -39,7 +39,15 @@ RSpec.describe User, type: :model do
   context 'バリデーションテスト(blog_url)' do
 
     it '長すぎる（無意味な）URLは無効であること' do
-      user = FactoryGirl.build(:user, blog_url: 'http://blog.' + ('a' * 100))
+      user = FactoryGirl.build(:user, blog_url: 'http://blog.' + ('a' * 71))
+      expect(user.valid?).to be false
+    end
+  end
+
+  context 'バリデーションテスト(twitter_url)' do
+
+    it '長すぎる（無意味な）URLは無効であること' do
+      user = FactoryGirl.build(:user, blog_url: 'http://blog.' + ('a' * 71))
       expect(user.valid?).to be false
     end
   end

@@ -62,10 +62,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user][:name] == '名無しさん'
-      flash[:danger] = '名前を変更してください'
-      render 'edit'
-    elsif @user.update_attributes(user_params)
+    if @user.update_attributes(user_params)
       flash[:success] = 'ユーザー情報を編集しました'
       redirect_to @user
     else
@@ -82,7 +79,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :image, :profile, :blog_url)
+      params.require(:user).permit(:name, :profile, :blog_url, :twitter_url, :image)
     end
 
     def search_params
