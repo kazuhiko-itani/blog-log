@@ -11,9 +11,16 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
+    user_name = auth[:info][:name]
+    user_image = auth[:info][:image]
+    profile = auth[:info][:description] ? auth[:info][:description] : ''
+    blog_url = auth[:info][:website] ? auth[:info][:website] : ''
+    twitter_url = auth[:info][:urls][:Twitter]
 
     self.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.name = '名無しさん'
+      user.name = user_name
+      user.profile = profile
+      user.blog_url = blog_url
     end
   end
 

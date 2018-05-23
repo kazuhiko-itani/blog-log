@@ -20,9 +20,7 @@
 
     <div class='user-description'>
       <p><%= @user.profile %></p>
-      <% unless @user.blog_url.empty? %>
-        <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
-      <% end %>
+      <p>ブログURL: <%= link_to @user.blog_url, @user.blog_url, :target=>["_blank"] %></p>
     </div>
 
     <% if logged_in? && @user == current_user %>

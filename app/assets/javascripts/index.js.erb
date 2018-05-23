@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#weekly-table').hide();
     $('#today-table').fadeIn();
     $('#time-table').children('h1').html(
-      "<%= Date.today.strftime('%m月%d日') %><%=  '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
+      "<%= Date.today.strftime('%m月%d日') + '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
     );
   });
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
     $('#today-table').hide();
     $('#yesterday-table').fadeIn();
     $('#time-table').children('h1').html(
-      "<%= (Date.yesterday).strftime('%m月%d日') %><%=  '(' + %w(日 月 火 水 木 金 土)[(Date.yesterday).wday] + ')' %>"
+      "<%= (Date.yesterday).strftime('%m月%d日') + '(' + %w(日 月 火 水 木 金 土)[(Date.yesterday).wday] + ')' %>"
     );
   });
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
     $('#today-table').hide();
     $('#weekly-table').fadeIn();
     $('#time-table').children('h1').html(
-      "<%= (Date.today - 7).strftime('%m月%d日') %>~<%= Date.today.strftime('%m月%d日') %>"
+      "<%= (Date.today - 7).strftime('%m月%d日') + '~' + Date.today.strftime('%m月%d日') %>"
     );
   });
 

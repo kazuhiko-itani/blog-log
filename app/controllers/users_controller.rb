@@ -58,9 +58,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def result
-  end
-
   def edit
   end
 
