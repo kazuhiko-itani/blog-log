@@ -13,7 +13,6 @@ class User < ApplicationRecord
     provider = auth[:provider]
     uid = auth[:uid]
     user_name = auth[:info][:name]
-    user_image = auth[:info][:image]
     profile = auth[:info][:description] ? auth[:info][:description] : ''
     blog_url = auth[:info][:website] ? auth[:info][:website] : ''
     twitter_url = auth[:info][:urls][:Twitter]
