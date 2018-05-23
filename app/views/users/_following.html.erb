@@ -3,7 +3,7 @@
 <table class='following'>
   <tr>
     <th>ユーザ名</th>
-    <th>作業時間</th>
+    <th>作業時間(昨日)</th>
     <th class='table-memo'>作業内容</th>
   </tr>
 
@@ -13,14 +13,21 @@
         <%= image_tag following.image.url, size: 50 %>
         <%= link_to following.name, following %>
       </td>
-      <% post = following.posts.find_by(date: Date.yesterday) %>
-      <td>
-        <%= post.working_total / 60 %>時間
-        <%= post.working_total % 60 %>分
-      </td>
-      <td class='table-memo'>
-        <%= post.memo %>
-      </td>
+
+      <% if (post = following.posts.find_by(date: Date.yesterday)) %>
+        <td>
+          <%= post.working_total / 60 %>時間
+          <%= post.working_total % 60 %>分
+        </td>
+        <td class='table-memo'>
+          <%= post.memo %>
+        </td>
+      <% else %>
+        <td>
+          0時間 0分
+        </td>
+        <td class='table-memo'></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

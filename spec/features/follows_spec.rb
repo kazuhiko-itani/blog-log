@@ -20,6 +20,25 @@ RSpec.feature "Follows", type: :feature do
     expect(page).to have_tag('.follow-form')
   end
 
+  scenario 'ユーザーをフォロー/アンフォローし、フォロー一覧ページに反映されることを確認' do
+    # ログインし、ユーザーをフォロー
+    log_in_as user
+    visit user_path(other_user)
+    find('.follow-btn').click
+
+    # フォロー一覧ページで確認
+    visit following_user_path(user)
+    expect(page).to have_content other_user.name
+
+    # フォローしたユーザーをアンフォローする
+    visit user_path(other_user)
+    find('.follow-btn').click
+
+    # フォロー一覧ページで確認
+    visit following_user_path(user)
+    expect(page).to_not have_content other_user.name
+  end
+
   # ログイン処理
   def log_in_as(user)
     visit login_path

@@ -7,6 +7,7 @@
         <% if logged_in? %>
           <li><%= link_to '記録する', new_post_path %></li>
           <li><%= link_to 'マイページ', user_path(current_user) %></li>
+          <li><%= link_to 'フォロー一覧', following_user_path(current_user) %></li>
           <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'ブログろぐとは？', help_path %></li>
@@ -26,6 +27,7 @@
             <ul class='dropdown-menu'>
               <li><%= link_to 'トップへ', root_path %></li>
               <li><%= link_to '記録する', new_post_path %></li>
+              <li><%= link_to 'フォロー一覧', following_user_path(current_user) %></li>
               <li><%= link_to 'ユーザー検索', search_form_users_path %></li>
               <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
             </ul>
