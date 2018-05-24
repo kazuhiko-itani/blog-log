@@ -4,7 +4,7 @@ RSpec.feature "CreateNewPosts", type: :feature do
 
   scenario '新しいpostを作成する' do
     user = FactoryGirl.create(:user)
-    log_in_as(user)
+    login_as user
 
     # 無効な値を入力
     visit new_post_path
@@ -32,10 +32,7 @@ RSpec.feature "CreateNewPosts", type: :feature do
   end
 
   # ログイン処理
-  def log_in_as(user)
-    visit login_path
-
-    fill_in 'ユーザー名', with: user.name
-    click_button 'ログイン'
+  def login_as(user)
+    page.set_rack_session(user_id: user.id)
   end
 end

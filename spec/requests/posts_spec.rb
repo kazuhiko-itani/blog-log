@@ -7,15 +7,14 @@ RSpec.describe "Posts", type: :request do
 
   describe '#new' do
 
-    # 非ログイン状態ではリダイレクトされること
-    it 'redirects without login' do
+    it '非ログイン状態ではリダイレクトされること' do
       get new_post_path
       expect(response).to have_http_status '302'
     end
 
-    # ログイン状態であればログインできること
-    it 'success access with login' do
+    it 'ログイン状態であればログインできること' do
       login_as user
+      post '/auth/twitter/callback'
       get new_post_path
       expect(response).to have_http_status '200'
     end
@@ -23,15 +22,13 @@ RSpec.describe "Posts", type: :request do
 
   describe '#create' do
 
-    # 非ログイン状態ではトップページにリダイレクトされること
-    it 'redirects to top-page without login' do
+    it '非ログイン状態ではトップページにリダイレクトされること' do
       post_params = FactoryGirl.attributes_for(:post)
       post posts_path, params: { post: post_params }
       expect(response).to redirect_to root_url
     end
 
-    # ログイン状態ではpost投稿後、ユーザー詳細ページにリダイレクトされること
-    it 'redirects to top-page without login' do
+    it 'ログイン状態ではpost投稿後、ユーザー詳細ページにリダイレクトされること' do
       login_as user
       post_params = FactoryGirl.attributes_for(:post)
       post posts_path, params: { post: post_params }
@@ -45,21 +42,18 @@ RSpec.describe "Posts", type: :request do
       @other_user_post = FactoryGirl.create(:post, user: other_user)
     end
 
-    # 非ログイン状態ではリダイレクトされること
-    it 'redirects without login' do
+    it '非ログイン状態ではリダイレクトされること' do
       get edit_post_path(@user_post)
       expect(response).to have_http_status '302'
     end
 
-    # ログイン状態でも違うユーザーのpostの場合はリダイレクトされること
-    it 'redirects when logged in wrong user' do
+    it 'ログイン状態でも違うユーザーのpostの場合はリダイレクトされること' do
       login_as user
       get edit_post_path(@other_user_post)
       expect(response).to have_http_status '302'
     end
 
-    # ログイン状態、かつ自分のpostの場合はアクセスできること
-    it 'success access when logged in and access my post' do
+    it 'ログイン状態、かつ自分のpostの場合はアクセスできること' do
       login_as user
       get edit_post_path(@user_post)
       expect(response).to have_http_status '200'
@@ -72,8 +66,7 @@ RSpec.describe "Posts", type: :request do
       @other_user_post = FactoryGirl.create(:post, user: other_user)
     end
 
-    # 非ログイン状態ではトップページにリダイレクトされること
-    it 'redirects to top-page without login' do
+    it '非ログイン状態ではトップページにリダイレクトされること' do
       patch post_path(@user_post), params: { post: {
                             date: '201-05-05',
                             working_hours: '2',
@@ -84,8 +77,7 @@ RSpec.describe "Posts", type: :request do
       expect(response).to redirect_to root_path
     end
 
-    # ログイン状態でも違うユーザーのpostの場合はリダイレクトされること
-    it 'redirects to top-page when logged in wrong user' do
+    it 'ログイン状態でも違うユーザーのpostの場合はリダイレクトされること' do
       login_as user
       patch post_path(@other_user_post), params: { post: {
                             date: '201-05-05',
@@ -97,8 +89,7 @@ RSpec.describe "Posts", type: :request do
       expect(response).to redirect_to root_path
     end
 
-    # ログイン状態、かつ本人のpostの場合は更新後、ユーザー詳細ページへリダイレクトされること
-    it 'redirects to user-show when logged in and my post' do
+    it 'ログイン状態、かつ本人のpostの場合は更新後、ユーザー詳細ページへリダイレクトされること' do
       login_as user
       patch post_path(@user_post), params: { post: {
                             date: '201-05-05',
@@ -117,21 +108,18 @@ RSpec.describe "Posts", type: :request do
       @other_user_post = FactoryGirl.create(:post, user: other_user)
     end
 
-    # 非ログイン状態ではトップページへリダイレクトされること
-    it 'redirects without login' do
+    it '非ログイン状態ではトップページへリダイレクトされること' do
       delete post_path(@user_post)
       expect(response).to redirect_to root_url
     end
 
-    # ログイン状態でも違うユーザーのpostの場合はリダイレクトされること
-    it 'redirects when logged in wrong user' do
+    it 'ログイン状態でも違うユーザーのpostの場合はリダイレクトされること' do
       login_as user
       delete post_path(@other_user_post)
       expect(response).to redirect_to root_url
     end
 
-    # ログイン状態、かつ自分のpostの場合は削除後、ユーザー詳細ページへリダイレクトされること
-    it 'success access when logged in and access my post' do
+    it 'ログイン状態、かつ自分のpostの場合は削除後、ユーザー詳細ページへリダイレクトされること' do
       login_as user
       delete post_path(@user_post)
       expect(response).to redirect_to user_url(user)
@@ -140,9 +128,6 @@ RSpec.describe "Posts", type: :request do
 
   # ログインメソッド
   def login_as(user)
-    post '/test/login', params: { session: {
-                  name: user.name
-        }
-      }
+    post '/test/login', params: { session: { name: user.name } }
   end
 end

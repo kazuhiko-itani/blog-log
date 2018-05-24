@@ -5,6 +5,8 @@ FactoryGirl.define do
     blog_url 'http://test-blog.com'
     image 'http://pbs.twimg.com/profile_images/982576420139364357/gXL9hPx7_normal.jpg'
     admin false
+    provider 'twitter'
+    uid '919909356879036413'
 
     trait :admin do
       name 'admin'

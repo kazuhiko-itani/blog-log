@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   # テスト用ログインアクション
-  get 'login' => 'sessions#new'
-  post 'test/login' => 'sessions#login'
+  if Rails.env.test?
+    post 'test/login' => 'sessions#login'
+  end
 end

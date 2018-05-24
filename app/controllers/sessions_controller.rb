@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
-  def new
-  end
+
+  before_action :logged_in_user, only: [:destroy]
 
   def create
     user = User.find_or_create_from_auth(request.env['omniauth.auth'])
     log_in user
     flash[:success] = 'ログインしました'
-    redirect_back_or user
+    redirect_to user
   end
 
   def destroy
@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     log_in user
     flash[:success] = 'ログインしました'
-    redirect_back_or user
+    redirect_to user
   end
 end

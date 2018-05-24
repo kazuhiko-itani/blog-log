@@ -4,9 +4,8 @@ RSpec.feature "UpdatingPosts", type: :feature do
   let(:user) { FactoryGirl.create(:user) }
   let(:post) {FactoryGirl.create(:post, user: user)}
 
-  # 投稿を更新後、削除する
-  scenario 'user updates post and delete it' do
-    log_in_as user
+  scenario '投稿を更新後、削除する' do
+    login_as user
     # post = FactoryGirl.create(:post, user: user)
     visit edit_post_path(post)
 
@@ -35,10 +34,7 @@ RSpec.feature "UpdatingPosts", type: :feature do
   end
 
   # ログイン処理
-  def log_in_as(user)
-    visit login_path
-
-    fill_in 'ユーザー名', with: user.name
-    click_button 'ログイン'
+  def login_as(user)
+    page.set_rack_session(user_id: user.id)
   end
 end

@@ -4,7 +4,7 @@ RSpec.feature "UpdatingUsers", type: :feature do
   let(:user) { FactoryGirl.create(:user) }
 
   scenario 'ユーザー情報の編集' do
-    log_in_as user
+    login_as user
     visit edit_user_path(user)
 
     # 編集に失敗する
@@ -38,19 +38,8 @@ RSpec.feature "UpdatingUsers", type: :feature do
     }.to change(User, :count).by(-1)
   end
 
-  it 'フレンドリーフォワーディング' do
-    visit edit_user_path(user)
-    expect(current_path).to eq root_path
-
-    log_in_as user
-    expect(current_path).to eq edit_user_path(user)
-  end
-
   # ログイン処理
-  def log_in_as(user)
-    visit login_path
-
-    fill_in 'ユーザー名', with: user.name
-    click_button 'ログイン'
+  def login_as(user)
+    page.set_rack_session(user_id: user.id)
   end
 end

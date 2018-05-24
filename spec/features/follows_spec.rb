@@ -11,7 +11,7 @@ RSpec.feature "Follows", type: :feature do
     expect(page).to_not have_tag('.follow-form')
 
     # ログイン状態でも、自分のページにはフォローボタンは表示されない
-    log_in_as user
+    login_as user
     visit user_path(user)
     expect(page).to_not have_tag('.follow-form')
 
@@ -22,7 +22,7 @@ RSpec.feature "Follows", type: :feature do
 
   scenario 'ユーザーをフォロー/アンフォローし、フォロー一覧ページに反映されることを確認' do
     # ログインし、ユーザーをフォロー
-    log_in_as user
+    login_as user
     visit user_path(other_user)
     find('.follow-btn').click
 
@@ -40,10 +40,7 @@ RSpec.feature "Follows", type: :feature do
   end
 
   # ログイン処理
-  def log_in_as(user)
-    visit login_path
-
-    fill_in 'ユーザー名', with: user.name
-    click_button 'ログイン'
+  def login_as(user)
+    page.set_rack_session(user_id: user.id)
   end
 end

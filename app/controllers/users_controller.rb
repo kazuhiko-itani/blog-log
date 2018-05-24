@@ -3,23 +3,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy, :following]
   before_action :correct_user, only: [:edit, :update, :destroy, :following]
 
-  # 一時的に不要
-  def new
-    @user = User.new
-  end
-
-  # 一時的に不要
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      flash[:success] = 'ユーザー登録が完了しました'
-      redirect_to @user
-    else
-      render 'new'
-    end
-  end
-
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])

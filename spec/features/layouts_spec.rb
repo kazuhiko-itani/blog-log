@@ -4,12 +4,11 @@ RSpec.feature "Layouts", type: :feature do
   let(:user) { FactoryGirl.create(:user) }
   let(:other_user) { FactoryGirl.create(:user) }
 
-  # ログイン前後のレイアウト
-  scenario 'layout before login and after login' do
+  scenario 'ログイン前後のレイアウト' do
     visit root_path
     expect(page).to have_tag('a', :text => 'ログイン/新規登録')
 
-    log_in_as user
+    login_as user
     visit root_path
 
     expect(page).to_not have_tag('a', :text => 'ログイン/新規登録')
@@ -21,7 +20,7 @@ RSpec.feature "Layouts", type: :feature do
     expect(page).to_not have_tag('.tweet-btn')
 
     # ログインしていれば自分のユーザーページにツイートボタンが表示されること
-    log_in_as user
+    login_as user
     visit user_path(user)
     expect(page).to have_tag('.tweet-btn')
 
@@ -30,10 +29,8 @@ RSpec.feature "Layouts", type: :feature do
     expect(page).to_not have_tag('.tweet-btn')
   end
 
-  # テスト用のログインフォームからログイン
-  def log_in_as(user)
-    visit login_path
-    fill_in 'ユーザー名', with: user.name
-    click_button 'ログイン'
+  # ログイン処理
+  def login_as(user)
+    page.set_rack_session(user_id: user.id)
   end
 end
