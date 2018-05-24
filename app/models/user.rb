@@ -17,7 +17,7 @@ class User < ApplicationRecord
     uid = auth[:uid]
     user_name = auth[:info][:name]
     profile = auth[:info][:description] ? auth[:info][:description] : ''
-    blog_url = auth[:info][:website] ? auth[:info][:website] : ''
+    blog_url =  ''
     twitter_url = auth[:info][:urls][:Twitter]
 
     self.find_or_create_by(provider: provider, uid: uid) do |user|

@@ -34,7 +34,7 @@ RSpec.feature "UpdatingUsers", type: :feature do
     # 退会する
     visit edit_user_path(user)
     expect {
-      click_link '退会する'
+      click_link 'ユーザーの削除'
     }.to change(User, :count).by(-1)
   end
 
