@@ -134,6 +134,37 @@ footer ul li {
   @include box-sizing;
 }
 
+/* help */
+
+.help-heading {
+  padding-top: 60px;
+  text-align: center;
+  h1, h3 {
+    padding-bottom: 20px;
+  }
+  img {
+    padding-bottom: 20px;
+  }
+}
+
+.login-btn {
+  background-color: #55acee;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.fa-twitter {
+  margin-right: 3px;
+}
+
 /* form */
 
 input, textarea, select, .uneditable-input {
@@ -324,6 +355,10 @@ table {
     }
   }
 
+  .help-heading img {
+    width: 90%;
+  }
+
   #post-btn {
     display: block;
   }
@@ -364,6 +399,10 @@ table {
     .fa-bars {
       font-size: 20px;
     }
+  }
+
+  .help-heading img {
+    width: 90%;
   }
 
   #post-btn {

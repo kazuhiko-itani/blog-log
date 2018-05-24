@@ -2,32 +2,39 @@
 
 <div class='row'>
   <div class='col-md-6 col-md-offset-3'>
-    <div class='page-title'>
+    <div class='help-heading'>
       <h1>ブログろぐの使い方</h1>
+      <p>ブログろぐはブロガーやアフィリエイター、フリーランス向けに作られた仕事、作業時間記録サービスです。</p>
     </div>
-    <p>ブログろぐはブロガーやアフィリエイター、フリーランス向けに作られた仕事、作業時間記録サービスです。</p>
 
-    <div class='main'>
+    <div class='main help-heading'>
       <h3>孤独な作業からの脱出</h3>
+      <%= image_tag 'desctop-pc.jpg', width: 400, height: 300 %>
       <p>これらの業種に共通する特徴として、「孤独」があります。</p>
       <p>一人で黙々と仕事、作業するのはモチベーションの維持が大変だと思っている人も多いはず。</p>
       <p>ブログろぐでは自分の日々の記録はもちろん、他の人の記録も見られるので、モチベーションアップにつながります。</p>
-      <p>自分のブログやサイト、URLを登録できるので、宣伝の場としても利用できます。</p>
+      <p>自分のブログやサイトのURLを登録できるので、宣伝の場としても利用できます。</p>
     </div>
 
-    <div class='function'>
+    <div class='function help-heading'>
       <h3>ブログろぐの主な機能</h3>
+      <%= image_tag 'character.jpg', width: 400, height: 300 %>
       <p>日々の作業時間の登録、閲覧、編集</p>
       <p>作業時間順のランキング機能</p>
       <p>ユーザー検索機能</p>
-      <p>お気に入りユーザーのフォロー機能（フォローしていることは相手には通知されません）</p>
+      <p>お気に入りユーザーのフォロー機能<br>（フォローしていることは相手には通知されません）</p>
     </div>
 
-    <div class='price'>
+    <div class='price help-heading'>
       <h3>全機能が無料で利用可能</h3>
+      <%= image_tag 'free.jpg', width: 300, height: 300 %>
       <p>ブログろぐは完全無料サービスです。</p>
       <p> さっそくTwitterアカウントでログインして、使ってみてくださいね</p>
-    </div>
+      <span class='login-btn'>
+      <%= link_to '/auth/twitter' do %>
+        <i class="fab fa-twitter"></i>Twitterで新規登録
+      <% end %>
+    </span>
     </div>
   </div>
 </div>
