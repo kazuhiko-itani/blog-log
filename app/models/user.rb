@@ -41,7 +41,7 @@ class User < ApplicationRecord
   end
 
   def image_size
-    if image_url.size > 5.megabytes
+    if image_url.size > 2.megabytes
       errors.add(:image_url, '画像のサイズが大きすぎます')
     end
   end
