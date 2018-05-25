@@ -24,7 +24,6 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'ransack', '1.8.4'
 gem 'twitter'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -61,6 +60,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'rspec-html-matchers'
+  gem 'sqlite3'
 end
 
 group :development do
