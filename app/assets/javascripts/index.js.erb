@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#weekly-table').hide();
     $('#today-table').fadeIn();
     $('#time-table').children('h1').html(
-      "<%= Time.now.strftime('%m月%d日') + '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
+      "<%= Date.today.strftime('%m月%d日') + '(' + %w(日 月 火 水 木 金 土)[Date.today.wday] + ')' %>"
     );
   });
 
